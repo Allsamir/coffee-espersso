@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-const CoffeCard = ({ coffee }) => {
+
+const CoffeCard = ({ coffee, handleDelete }) => {
   return (
     <div className="card bg-base-100 shadow-xl image-full">
       <figure>
@@ -11,7 +12,14 @@ const CoffeCard = ({ coffee }) => {
         <div className="card-actions justify-end">
           <button className="btn btn-outline text-white">View</button>
           <button className="btn btn-outline text-white">Edit</button>
-          <button className="btn btn-outline text-white">Delete</button>
+          <button
+            className="btn btn-outline text-white"
+            onClick={() => {
+              handleDelete(coffee._id);
+            }}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -20,6 +28,7 @@ const CoffeCard = ({ coffee }) => {
 
 CoffeCard.propTypes = {
   coffee: PropTypes.object.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default CoffeCard;

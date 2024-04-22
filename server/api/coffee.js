@@ -3,6 +3,7 @@ const router = express.Router();
 const client = require("../mongoDB/mongodb");
 const database = client.db("coffeeDB");
 const coffees = database.collection("coffees");
+const { ObjectId } = require("mongodb");
 
 async function run() {
   try {
@@ -16,13 +17,19 @@ async function run() {
     router.get("/", async (req, res) => {
       const coffeeData = coffees.find({});
       const coffeeArray = await coffeeData.toArray();
-      console.log(coffeeArray);
       res.send(coffeeArray);
     });
     router.post("/add-coffee", async (req, res) => {
       const newCoffee = req.body;
       const result = await coffees.insertOne(newCoffee);
       res.json(result);
+    });
+    router.delete("/:coffeeID", async (req, res) => {
+      const coffeeId = req.params.coffeeID;
+      const deleteCoffee = await coffees.deleteOne({
+        _id: new ObjectId(coffeeId),
+      });
+      res.json(deleteCoffee);
     });
   } finally {
     // Ensures that the client will close when you finish/error
