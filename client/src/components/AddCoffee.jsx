@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 const AddCoffee = () => {
   const { register, handleSubmit } = useForm();
   const form = useRef(null);
@@ -14,8 +15,14 @@ const AddCoffee = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
-        form.current.reset();
+        if (result.acknowledged) {
+          Swal.fire({
+            title: "Successfully Added!",
+            text: "Coffee has been added",
+            icon: "success",
+          });
+          form.current.reset();
+        }
       })
       .catch((err) => console.error(err));
   };

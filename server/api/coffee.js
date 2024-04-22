@@ -13,10 +13,15 @@ async function run() {
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!",
     );
-
+    router.get("/", async (req, res) => {
+      const coffeeData = coffees.find({});
+      const coffeeArray = await coffeeData.toArray();
+      console.log(coffeeArray);
+      res.send(coffeeArray);
+    });
     router.post("/add-coffee", async (req, res) => {
-      const coffeeData = req.body;
-      const result = await coffees.insertOne(coffeeData);
+      const newCoffee = req.body;
+      const result = await coffees.insertOne(newCoffee);
       res.json(result);
     });
   } finally {
