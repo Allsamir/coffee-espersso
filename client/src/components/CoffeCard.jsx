@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const CoffeCard = ({ coffee, handleDelete }) => {
   return (
@@ -11,7 +12,9 @@ const CoffeCard = ({ coffee, handleDelete }) => {
         <p>{coffee.details}</p>
         <div className="card-actions justify-end">
           <button className="btn btn-outline text-white">View</button>
-          <button className="btn btn-outline text-white">Edit</button>
+          <Link to={`/update-coffee/${coffee._id}`}>
+            <button className="btn btn-outline text-white">Edit</button>
+          </Link>
           <button
             className="btn btn-outline text-white"
             onClick={() => {

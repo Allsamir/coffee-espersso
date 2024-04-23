@@ -6,7 +6,6 @@ const AddCoffee = () => {
   const { register, handleSubmit } = useForm();
   const form = useRef(null);
   const onSubmit = (data) => {
-    console.log(data);
     fetch("http://localhost:3000/add-coffee", {
       method: "POST",
       headers: {
@@ -44,7 +43,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              placeholder="Coffee Name"
+              defaultValue="Coffee Name"
               className="input input-bordered"
               required
               {...register("coffeeName")}
@@ -56,7 +55,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              placeholder="Available Quantity"
+              defaultValue="Available Quantity"
               className="input input-bordered"
               required
               {...register("availableQuantity")}
@@ -68,7 +67,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              placeholder="Supplier Name"
+              defaultValue="Supplier Name"
               className="input input-bordered"
               required
               {...register("supplierName")}
@@ -80,7 +79,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              placeholder="Test"
+              defaultValue="Test"
               className="input input-bordered"
               required
               {...register("test")}
@@ -92,7 +91,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              placeholder="Category"
+              defaultValue="Category"
               className="input input-bordered"
               required
               {...register("category")}
@@ -104,7 +103,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              placeholder="Details"
+              defaultValue="Details"
               className="input input-bordered"
               required
               {...register("details")}
@@ -116,7 +115,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              placeholder="Photo URL"
+              defaultValue="Photo URL"
               className="input input-bordered"
               required
               {...register("photoURL")}

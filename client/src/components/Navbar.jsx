@@ -18,11 +18,6 @@ const Navbar = () => {
               Add Coffee
             </Link>
           </li>
-          <li>
-            <Link to={`/update-coffee`} className="font-semibold">
-              Update Coffee
-            </Link>
-          </li>
         </ul>
       </div>
     </div>

@@ -19,9 +19,36 @@ async function run() {
       const coffeeArray = await coffeeData.toArray();
       res.send(coffeeArray);
     });
+    router.get("/update-coffee/:coffeeID", async (req, res) => {
+      const coffeeId = req.params.coffeeID;
+      const coffee = await coffees.findOne({ _id: new ObjectId(coffeeId) });
+      res.json(coffee);
+    });
     router.post("/add-coffee", async (req, res) => {
       const newCoffee = req.body;
       const result = await coffees.insertOne(newCoffee);
+      res.json(result);
+    });
+    router.put("/update-coffee/:coffeeID", async (req, res) => {
+      const coffeeId = req.params.coffeeID;
+      const newCoffee = req.body;
+      const options = { upsert: true };
+      const updateCoffee = {
+        $set: {
+          coffeeName: newCoffee.coffeeName,
+          availableQuantity: newCoffee.availableQuantity,
+          supplierName: newCoffee.supplierName,
+          test: newCoffee.test,
+          category: newCoffee.category,
+          details: newCoffee.details,
+          photoURL: newCoffee.photoURL,
+        },
+      };
+      const result = await coffees.updateOne(
+        { _id: new ObjectId(coffeeId) },
+        updateCoffee,
+        options,
+      );
       res.json(result);
     });
     router.delete("/:coffeeID", async (req, res) => {

@@ -27,8 +27,19 @@ const router = createBrowserRouter([
     element: <AddCoffee />,
   },
   {
-    path: "/update-coffee",
+    path: "/update-coffee/:coffeeID",
     element: <UpdateCoffee />,
+    loader: async ({ params }) => {
+      try {
+        const coffees = await fetch(
+          `http://localhost:3000/update-coffee/${params.coffeeID}`,
+        );
+        const result = coffees.json();
+        return result;
+      } catch (err) {
+        console.error(err);
+      }
+    },
   },
 ]);
 
