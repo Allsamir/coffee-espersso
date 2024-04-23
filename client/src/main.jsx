@@ -7,6 +7,9 @@ import AddCoffee from "./components/AddCoffee.jsx";
 import UpdateCoffee from "./components/UpdateCoffee.jsx";
 import ErrorPage from "./components/ErrorElement.jsx";
 import CoffeeDetails from "./components/CoffeeDetails.jsx";
+import Register from "./components/Register.jsx";
+import Login from "./components/Login.jsx";
+import AuthProvider from "./auth/AuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -55,10 +58,20 @@ const router = createBrowserRouter([
       }
     },
   },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 );

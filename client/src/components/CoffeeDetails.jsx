@@ -15,10 +15,7 @@ const CoffeeDetails = () => {
           <img src={coffee.photoURL} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">
-            <span>Name :</span>
-            {coffee.coffeeName}
-          </h2>
+          <h2 className="card-title">{coffee.coffeeName}</h2>
           <p>{coffee.details}</p>
           <div className="card-actions justify-end">
             <button
