@@ -43,7 +43,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              defaultValue="Coffee Name"
+              placeholder="Coffee Name"
               className="input input-bordered"
               required
               {...register("coffeeName")}
@@ -55,7 +55,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              defaultValue="Available Quantity"
+              placeholder="Available Quantity"
               className="input input-bordered"
               required
               {...register("availableQuantity")}
@@ -67,7 +67,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              defaultValue="Supplier Name"
+              placeholder="Supplier Name"
               className="input input-bordered"
               required
               {...register("supplierName")}
@@ -79,7 +79,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              defaultValue="Test"
+              placeholder="Test"
               className="input input-bordered"
               required
               {...register("test")}
@@ -91,7 +91,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              defaultValue="Category"
+              placeholder="Category"
               className="input input-bordered"
               required
               {...register("category")}
@@ -103,7 +103,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              defaultValue="Details"
+              placeholder="Details"
               className="input input-bordered"
               required
               {...register("details")}
@@ -115,7 +115,7 @@ const AddCoffee = () => {
             </label>
             <input
               type="text"
-              defaultValue="Photo URL"
+              placeholder="Photo URL"
               className="input input-bordered"
               required
               {...register("photoURL")}

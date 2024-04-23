@@ -58,7 +58,7 @@ const UpdateCoffee = () => {
               </label>
               <input
                 type="text"
-                defaultValue={coffee.coffeeName}
+                placeholder={coffee.coffeeName}
                 className="input input-bordered"
                 required
                 {...register("coffeeName")}
@@ -70,7 +70,7 @@ const UpdateCoffee = () => {
               </label>
               <input
                 type="text"
-                defaultValue={coffee.availableQuantity}
+                placeholder={coffee.availableQuantity}
                 className="input input-bordered"
                 required
                 {...register("availableQuantity")}
@@ -82,7 +82,7 @@ const UpdateCoffee = () => {
               </label>
               <input
                 type="text"
-                defaultValue={coffee.supplierName}
+                placeholder={coffee.supplierName}
                 className="input input-bordered"
                 required
                 {...register("supplierName")}
@@ -94,7 +94,7 @@ const UpdateCoffee = () => {
               </label>
               <input
                 type="text"
-                defaultValue={coffee.test}
+                placeholder={coffee.test}
                 className="input input-bordered"
                 required
                 {...register("test")}
@@ -106,7 +106,7 @@ const UpdateCoffee = () => {
               </label>
               <input
                 type="text"
-                defaultValue={coffee.category}
+                placeholder={coffee.category}
                 className="input input-bordered"
                 required
                 {...register("category")}
@@ -118,7 +118,7 @@ const UpdateCoffee = () => {
               </label>
               <input
                 type="text"
-                defaultValue={coffee.details}
+                placeholder={coffee.details}
                 className="input input-bordered"
                 required
                 {...register("details")}
@@ -130,7 +130,7 @@ const UpdateCoffee = () => {
               </label>
               <input
                 type="text"
-                defaultValue={coffee.photoURL}
+                placeholder={coffee.photoURL}
                 className="input input-bordered"
                 required
                 {...register("photoURL")}

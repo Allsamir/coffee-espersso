@@ -7,9 +7,7 @@ const { ObjectId } = require("mongodb");
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
-    // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!",
@@ -18,6 +16,11 @@ async function run() {
       const coffeeData = coffees.find({});
       const coffeeArray = await coffeeData.toArray();
       res.send(coffeeArray);
+    });
+    router.get("/:coffeeID", async (req, res) => {
+      const coffeeId = req.params.coffeeID;
+      const coffee = await coffees.findOne({ _id: new ObjectId(coffeeId) });
+      res.json(coffee);
     });
     router.get("/update-coffee/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
@@ -59,7 +62,6 @@ async function run() {
       res.json(deleteCoffee);
     });
   } finally {
-    // Ensures that the client will close when you finish/error
     //await client.close();
   }
 }

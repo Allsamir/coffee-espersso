@@ -11,7 +11,9 @@ const CoffeCard = ({ coffee, handleDelete }) => {
         <h2 className="card-title">{coffee.coffeeName}</h2>
         <p>{coffee.details}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-outline text-white">View</button>
+          <Link to={`/${coffee._id}`}>
+            <button className="btn btn-outline text-white">View</button>
+          </Link>
           <Link to={`/update-coffee/${coffee._id}`}>
             <button className="btn btn-outline text-white">Edit</button>
           </Link>
