@@ -4,6 +4,7 @@ import { auth } from "./firebase.config";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 
@@ -14,14 +15,18 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
+  const logIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
   const logOut = () => {
     return signOut(auth);
   };
-  const userInfo = { user, createUser, logOut };
+  const userInfo = { user, createUser, logOut, logIn };
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        console.log(user);
       } else {
         console.log("Something went wrong!!");
       }

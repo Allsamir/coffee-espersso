@@ -2,6 +2,7 @@ import { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../auth/AuthProvider";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 const Register = () => {
   const { register, handleSubmit } = useForm();
   const form = useRef(null);
@@ -12,8 +13,21 @@ const Register = () => {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
-        form.current.reset();
+        const { email } = user;
+        const userStoreInDB = { email };
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userStoreInDB),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.acknowledged) {
+              form.current.reset();
+            }
+          });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -62,6 +76,12 @@ const Register = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
               </div>
+              <p className="text-center text-base pt-4">
+                Already registerd?{" "}
+                <Link to={`/login`} className="text-blue-600">
+                  Login Now
+                </Link>
+              </p>
             </form>
           </div>
         </div>

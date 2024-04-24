@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const client = require("../mongoDB/mongodb");
 const database = client.db("coffeeDB");
-const coffees = database.collection("coffees");
+const coffeeCollection = database.collection("coffees");
+const userCollection = database.collection("users");
 const { ObjectId } = require("mongodb");
 
 async function run() {
@@ -13,23 +14,27 @@ async function run() {
       "Pinged your deployment. You successfully connected to MongoDB!",
     );
     router.get("/", async (req, res) => {
-      const coffeeData = coffees.find({});
+      const coffeeData = coffeeCollection.find({});
       const coffeeArray = await coffeeData.toArray();
       res.send(coffeeArray);
     });
     router.get("/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
-      const coffee = await coffees.findOne({ _id: new ObjectId(coffeeId) });
+      const coffee = await coffeeCollection.findOne({
+        _id: new ObjectId(coffeeId),
+      });
       res.json(coffee);
     });
     router.get("/update-coffee/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
-      const coffee = await coffees.findOne({ _id: new ObjectId(coffeeId) });
+      const coffee = await coffeeCollection.findOne({
+        _id: new ObjectId(coffeeId),
+      });
       res.json(coffee);
     });
     router.post("/add-coffee", async (req, res) => {
       const newCoffee = req.body;
-      const result = await coffees.insertOne(newCoffee);
+      const result = await coffeeCollection.insertOne(newCoffee);
       res.json(result);
     });
     router.put("/update-coffee/:coffeeID", async (req, res) => {
@@ -47,7 +52,7 @@ async function run() {
           photoURL: newCoffee.photoURL,
         },
       };
-      const result = await coffees.updateOne(
+      const result = await coffeeCollection.updateOne(
         { _id: new ObjectId(coffeeId) },
         updateCoffee,
         options,
@@ -56,10 +61,17 @@ async function run() {
     });
     router.delete("/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
-      const deleteCoffee = await coffees.deleteOne({
+      const deleteCoffee = await coffeeCollection.deleteOne({
         _id: new ObjectId(coffeeId),
       });
       res.json(deleteCoffee);
+    });
+
+    // User api
+    router.post("/users", async (req, res) => {
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.json(result);
     });
   } finally {
     //await client.close();
