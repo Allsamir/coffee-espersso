@@ -15,7 +15,7 @@ const Register = () => {
         const user = userCredential.user;
         const { email } = user;
         const userStoreInDB = { email };
-        fetch("http://localhost:3000/users", {
+        fetch("http://localhost:3000/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",

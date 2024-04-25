@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import { useContext } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -13,14 +14,14 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 items-center">
           <li className="font-bold">{user?.email}</li>
           <li>
-            <Link to={`/`} className="font-semibold">
+            <NavLink to={`/`} className="font-semibold">
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={`/add-coffee`} className="font-semibold">
+            <NavLink to={`/add-coffee`} className="font-semibold">
               Add Coffee
-            </Link>
+            </NavLink>
           </li>
           <li>
             {user ? (
@@ -30,6 +31,7 @@ const Navbar = () => {
                   logOut()
                     .then(() => {
                       console.log("Successfully Logout");
+                      navigate("/login");
                     })
                     .catch((error) => {
                       console.error(error);

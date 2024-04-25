@@ -13,11 +13,27 @@ async function run() {
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!",
     );
+
+    // User API routes
+    router.get("/users", async (req, res) => {
+      const cursor = userCollection.find();
+      const result = await cursor.toArray();
+      res.json(result);
+    });
+
+    router.post("/user", async (req, res) => {
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.json(result);
+    });
+
+    // Coffee API routes
     router.get("/", async (req, res) => {
       const coffeeData = coffeeCollection.find({});
       const coffeeArray = await coffeeData.toArray();
       res.send(coffeeArray);
     });
+
     router.get("/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
       const coffee = await coffeeCollection.findOne({
@@ -25,6 +41,7 @@ async function run() {
       });
       res.json(coffee);
     });
+
     router.get("/update-coffee/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
       const coffee = await coffeeCollection.findOne({
@@ -32,11 +49,13 @@ async function run() {
       });
       res.json(coffee);
     });
+
     router.post("/add-coffee", async (req, res) => {
       const newCoffee = req.body;
       const result = await coffeeCollection.insertOne(newCoffee);
       res.json(result);
     });
+
     router.put("/update-coffee/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
       const newCoffee = req.body;
@@ -59,6 +78,7 @@ async function run() {
       );
       res.json(result);
     });
+
     router.delete("/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
       const deleteCoffee = await coffeeCollection.deleteOne({
@@ -66,17 +86,11 @@ async function run() {
       });
       res.json(deleteCoffee);
     });
-
-    // User api
-    router.post("/users", async (req, res) => {
-      const user = req.body;
-      const result = await userCollection.insertOne(user);
-      res.json(result);
-    });
   } finally {
     //await client.close();
   }
 }
+
 run().catch(console.dir);
 
 module.exports = router;

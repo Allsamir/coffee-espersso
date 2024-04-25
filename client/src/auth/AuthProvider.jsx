@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
+    setUser(null);
     return signOut(auth);
   };
   const userInfo = { user, createUser, logOut, logIn };
