@@ -27,6 +27,18 @@ async function run() {
       res.json(result);
     });
 
+    router.delete("/users/:id", async (req, res) => {
+      try {
+        const userID = req.params.id;
+        const result = await userCollection.deleteOne({
+          _id: new ObjectId(userID),
+        });
+        res.json(result);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
     // Coffee API routes
     router.get("/", async (req, res) => {
       const coffeeData = coffeeCollection.find({});

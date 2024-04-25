@@ -24,9 +24,14 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to={`/users`} className="font-semibold">
+              Users
+            </NavLink>
+          </li>
+          <li>
             {user ? (
               <button
-                className="btn btn-outline text-white"
+                className="btn btn-outline text-white ml-4"
                 onClick={() => {
                   logOut()
                     .then(() => {
