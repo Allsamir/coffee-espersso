@@ -14,9 +14,25 @@ const Login = () => {
     logIn(email, password)
       .then((userCredential) => {
         // Signed up
-        const user = userCredential.user;
+        const email = userCredential.user.email;
+        const lastSignInTime = userCredential.user.metadata.lastSignInTime;
+        // Convert GMT time to local time
+        const gmtDate = new Date(lastSignInTime);
+        const lastSignIn = gmtDate.toLocaleString();
+        const user = { email, lastSignIn };
         console.log(user);
-        form.current.reset();
+        fetch(`http://localhost:3000/users`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.acknowledged) form.current.reset();
+          })
+          .catch((err) => console.error(err));
       })
       .catch((error) => {
         const errorCode = error.code;

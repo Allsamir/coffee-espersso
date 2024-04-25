@@ -27,6 +27,19 @@ async function run() {
       res.json(result);
     });
 
+    router.patch("/users", async (req, res) => {
+      const user = req.body;
+      const filter = { email: user.email };
+      const updateDoc = {
+        $set: {
+          lastSignIn: user.lastSignIn,
+        },
+      };
+      const options = { upsert: true };
+      const result = await userCollection.updateOne(filter, updateDoc, options);
+      res.json(result);
+    });
+
     router.delete("/users/:id", async (req, res) => {
       try {
         const userID = req.params.id;

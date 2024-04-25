@@ -22,13 +22,15 @@ const User = () => {
     <>
       <Navbar />
       <div className="overflow-x-auto lg:w-1/2 md:w-4/5 w-full mx-auto">
-        <h2 className="text-center mt-12 text-4xl">Users from DB</h2>
+        <h2 className="text-center my-12 text-4xl">Users from DB</h2>
         <table className="table">
           {/* head */}
           <thead>
             <tr>
               <th></th>
               <th className="text-xl">Email</th>
+              <th className="text-xl">Account Created</th>
+              <th className="text-xl">Last LoggedIn</th>
               <th className="text-xl">Action</th>
             </tr>
           </thead>
@@ -39,6 +41,8 @@ const User = () => {
                 <tr className="bg-base-200" key={index}>
                   <th>{index + 1}</th>
                   <th>{user.email}</th>
+                  <th>{user.creationTime}</th>
+                  <th>{user.lastSignIn}</th>
                   <th>
                     <button
                       className="btn btn-outline text-white"

@@ -12,9 +12,11 @@ const Register = () => {
     createUser(email, password)
       .then((userCredential) => {
         // Signed up
-        const user = userCredential.user;
-        const { email } = user;
-        const userStoreInDB = { email };
+        const creationTimeOfUser = userCredential.user.metadata.creationTime;
+        const gmtDate = new Date(creationTimeOfUser);
+        // Convert GMT time to local time
+        const creationTime = gmtDate.toLocaleString();
+        const userStoreInDB = { email, creationTime };
         fetch("http://localhost:3000/user", {
           method: "POST",
           headers: {
