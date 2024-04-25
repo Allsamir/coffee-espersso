@@ -32,7 +32,9 @@ const router = createBrowserRouter([
     element: <CoffeeDetails />,
     loader: async ({ params }) => {
       try {
-        const coffee = await fetch(`http://localhost:3000/${params.coffeeID}`);
+        const coffee = await fetch(
+          `http://localhost:3000/coffee/${params.coffeeID}`,
+        );
         const result = coffee.json();
         return result;
       } catch (err) {

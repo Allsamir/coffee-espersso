@@ -30,7 +30,7 @@ const User = () => {
               <th></th>
               <th className="text-xl">Email</th>
               <th className="text-xl">Account Created</th>
-              <th className="text-xl">Last LoggedIn</th>
+              <th className="text-xl">Last Logged In</th>
               <th className="text-xl">Action</th>
             </tr>
           </thead>

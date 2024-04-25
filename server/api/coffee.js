@@ -14,44 +14,6 @@ async function run() {
       "Pinged your deployment. You successfully connected to MongoDB!",
     );
 
-    // User API routes
-    router.get("/users", async (req, res) => {
-      const cursor = userCollection.find();
-      const result = await cursor.toArray();
-      res.json(result);
-    });
-
-    router.post("/user", async (req, res) => {
-      const user = req.body;
-      const result = await userCollection.insertOne(user);
-      res.json(result);
-    });
-
-    router.patch("/users", async (req, res) => {
-      const user = req.body;
-      const filter = { email: user.email };
-      const updateDoc = {
-        $set: {
-          lastSignIn: user.lastSignIn,
-        },
-      };
-      const options = { upsert: true };
-      const result = await userCollection.updateOne(filter, updateDoc, options);
-      res.json(result);
-    });
-
-    router.delete("/users/:id", async (req, res) => {
-      try {
-        const userID = req.params.id;
-        const result = await userCollection.deleteOne({
-          _id: new ObjectId(userID),
-        });
-        res.json(result);
-      } catch (err) {
-        console.error(err);
-      }
-    });
-
     // Coffee API routes
     router.get("/", async (req, res) => {
       const coffeeData = coffeeCollection.find({});
@@ -59,7 +21,7 @@ async function run() {
       res.send(coffeeArray);
     });
 
-    router.get("/:coffeeID", async (req, res) => {
+    router.get("/coffee/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
       const coffee = await coffeeCollection.findOne({
         _id: new ObjectId(coffeeId),
@@ -104,7 +66,7 @@ async function run() {
       res.json(result);
     });
 
-    router.delete("/:coffeeID", async (req, res) => {
+    router.delete("coffee/:coffeeID", async (req, res) => {
       const coffeeId = req.params.coffeeID;
       const deleteCoffee = await coffeeCollection.deleteOne({
         _id: new ObjectId(coffeeId),
