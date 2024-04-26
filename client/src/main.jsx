@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <App />,
     loader: async () => {
       try {
-        const coffees = await fetch("http://localhost:3000/");
+        const coffees = await fetch("https://server-espersso.vercel.app/");
         const result = coffees.json();
         return result;
       } catch (err) {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
     loader: async ({ params }) => {
       try {
         const coffee = await fetch(
-          `http://localhost:3000/coffee/${params.coffeeID}`,
+          `https://server-espersso.vercel.app/coffee/${params.coffeeID}`,
         );
         const result = coffee.json();
         return result;
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     loader: async ({ params }) => {
       try {
         const coffees = await fetch(
-          `http://localhost:3000/update-coffee/${params.coffeeID}`,
+          `https://server-espersso.vercel.app/update-coffee/${params.coffeeID}`,
         );
         const result = coffees.json();
         return result;
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
   {
     path: "/users",
     element: <User />,
-    loader: () => fetch("http://localhost:3000/users"),
+    loader: () => fetch("https://server-espersso.vercel.app/users"),
   },
 ]);
 

@@ -21,7 +21,7 @@ const Login = () => {
         const lastSignIn = gmtDate.toLocaleString();
         const user = { email, lastSignIn };
         console.log(user);
-        fetch(`http://localhost:3000/users`, {
+        fetch(`https://server-espersso.vercel.app/users`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

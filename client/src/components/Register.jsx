@@ -17,7 +17,7 @@ const Register = () => {
         // Convert GMT time to local time
         const creationTime = gmtDate.toLocaleString();
         const userStoreInDB = { email, creationTime };
-        fetch("http://localhost:3000/user", {
+        fetch("https://server-espersso.vercel.app/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",

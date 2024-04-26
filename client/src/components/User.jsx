@@ -6,7 +6,7 @@ const User = () => {
   const userData = useLoaderData();
   const [users, setUsers] = useState(userData);
   const handleDelete = (id) => {
-    fetch(`http://localhost:3000/users/${id}`, {
+    fetch(`https://server-espersso.vercel.app/users/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

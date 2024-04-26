@@ -9,7 +9,7 @@ const UpdateCoffee = () => {
   const { register, handleSubmit } = useForm();
   const form = useRef(null);
   const onSubmit = (data) => {
-    fetch(`http://localhost:3000/update-coffee/${coffee._id}`, {
+    fetch(`https://server-espersso.vercel.app/update-coffee/${coffee._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

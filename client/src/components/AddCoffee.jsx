@@ -6,7 +6,7 @@ const AddCoffee = () => {
   const { register, handleSubmit } = useForm();
   const form = useRef(null);
   const onSubmit = (data) => {
-    fetch("http://localhost:3000/add-coffee", {
+    fetch("https://server-espersso.vercel.app/add-coffee", {
       method: "POST",
       headers: {
         "content-type": "application/json",

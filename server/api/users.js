@@ -7,12 +7,6 @@ const { ObjectId } = require("mongodb");
 
 async function run() {
   try {
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!",
-    );
-
     // User API routes
     router.get("/users", async (req, res) => {
       const cursor = userCollection.find();
